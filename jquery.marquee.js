@@ -19,56 +19,35 @@
     let lastScrollPos = 0;
     let timer;
   
-      const $container = _this.find('.marquee__content');
-      const $content = _this.find('.marquee__content > *');
-  
-      // Get total width
-      const elWidth = $content.width();
-      const repeats = Math.round(_this.innerWidth() / $content.innerWidth());
+    const $container = _this.find('.marquee__content');
+    const $content = _this.find('.marquee__content > *');
 
-      // Duplicate content
-      for (let index = 0; index < repeats + 1; index++) {
-        $content.clone().appendTo($container)
-      }
-  
-      let progress = 1;
-  
-      function loop() {
-        progress = progress - speed;
+    // Get total width
+    const elWidth = $content.width();
+    const repeats = Math.round(_this.innerWidth() / $content.innerWidth());
 
-        if (progress <= elWidth * -1) {
-          progress = 0;
-        }
-
-        $container.css({
-          'transform': 'translateX(' + progress + 'px)'
-        });
-
-        window.requestAnimationFrame(loop);
-      }
-
-      loop();
-
-  
-    window.addEventListener('scroll', () => {
-      const maxScrollValue = 12;
-      const newScrollPos = window.scrollY;
-      let scrollValue = newScrollPos - lastScrollPos;
-      
-      if (scrollValue > maxScrollValue) {
-        scrollValue = maxScrollValue;
-      } else if (scrollValue < -maxScrollValue) {
-        scrollValue = -maxScrollValue;
-      }
-  
-      speed = scrollValue;
-      clearTimeout(timer);
-      timer = setTimeout(handleSpeedClear, 10);
-    });
-    
-    function handleSpeedClear() {
-      speed = 4;
+    // Duplicate content
+    for (let index = 0; index < repeats + 1; index++) {
+      $content.clone().appendTo($container)
     }
+
+    let progress = 1;
+
+    function loop() {
+      progress = progress - speed;
+
+      if (progress <= elWidth * -1) {
+        progress = 0;
+      }
+
+      $container.css({
+        'transform': 'translateX(' + progress + 'px)'
+      });
+
+      window.requestAnimationFrame(loop);
+    }
+
+    loop();
 
   }
 
