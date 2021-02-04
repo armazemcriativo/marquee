@@ -31,26 +31,6 @@ function handleMarquee() {
       }
       loop();
     });
-  
-    window.addEventListener('scroll', () => {
-      const maxScrollValue = 12;
-      const newScrollPos = window.scrollY;
-      let scrollValue = newScrollPos - lastScrollPos;
-      
-      if (scrollValue > maxScrollValue) {
-        scrollValue = maxScrollValue;
-      } else if (scrollValue < -maxScrollValue) {
-        scrollValue = -maxScrollValue;
-      }
-  
-      speed = scrollValue;
-      clearTimeout(timer);
-      timer = setTimeout(handleSpeedClear, 10);
-    });
-    
-    function handleSpeedClear() {
-      speed = 4;
-    }
   }
   
   handleMarquee();
