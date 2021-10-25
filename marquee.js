@@ -9,8 +9,11 @@ function handleMarquee() {
       const container = el.querySelector('.marquee__content');
       const content = el.querySelector('.marquee__content > *');
   
-      // Get total width
-      const elWidth = content.offsetWidth;
+      // Get total width with possible side margins
+      const marginRight = (
+          content.currentStyle || window.getComputedStyle(content)
+      ).marginRight
+      const elWidth = content.clientWidth + marginRight
       const repeats = Math.round(el.clientWidth / content.clientWidth);
   
       // Duplicate content
