@@ -11,10 +11,12 @@ function handleMarquee() {
   
       // Get total width with possible side margins
       const marginRight = (
-          content.currentStyle || window.getComputedStyle(content)
+        content.currentStyle || window.getComputedStyle(content)
       ).marginRight
-      const elWidth = content.clientWidth + marginRight
-      const repeats = Math.round(el.clientWidth / content.clientWidth);
+      const scrollbarWidth = window.innerWidth - document.body.offsetWidth
+      const elWidth =
+        content.clientWidth + parseInt(marginRight) - scrollbarWidth
+      const repeats = Math.round(el.clientWidth / content.clientWidth)
   
       // Duplicate content
       for (let index = 0; index < repeats + 1; index++) {
